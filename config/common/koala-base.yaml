@@ -28,4 +28,4 @@ packages:
       - packages/core/timers-alarm.yaml
       - packages/core/controls.yaml
       - packages/respeaker-lite/hardware.yaml
-  #koala_device: !include ../../packages/koala/device.yaml
+
