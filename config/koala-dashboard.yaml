@@ -7,18 +7,18 @@ substitutions:
 
 packages:
   koala:
-    url: https://github.com/formatBCE/Koala-Satellite
+    url: https://github.com/owenmckeith/TheRing-Satellite
     ref: ${koala_ref}
     refresh: 1d
     files:
       - config/common/koala-base.yaml
 
 esphome:
-  friendly_name: Koala Satellite
+  friendly_name: TheRing-VA
   name_add_mac_suffix: false
 
 wifi:
   ap:
-    ssid: "Koala Satellite"
+    ssid: "TheRing"
   ssid: !secret wifi_ssid
   password: !secret wifi_password
