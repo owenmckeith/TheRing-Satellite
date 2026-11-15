@@ -22,10 +22,10 @@ packages:
     ref: ${respeaker_lite_ref}
     refresh: 1d
     files:
-#      - packages/core/base.yaml
-#      - packages/core/voice-assistant.yaml
-#      - packages/core/media-player.yaml
-#      - packages/core/timers-alarm.yaml
-#      - packages/core/controls.yaml
-#      - packages/respeaker-lite/hardware.yaml
+      - packages/core/base.yaml
+      - packages/core/voice-assistant.yaml
+      - packages/core/media-player.yaml
+      - packages/core/timers-alarm.yaml
+      - packages/core/controls.yaml
+      - packages/respeaker-lite/hardware.yaml
 
