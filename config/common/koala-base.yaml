@@ -24,8 +24,8 @@ packages:
     files:
       - packages/core/base.yaml
       - packages/core/voice-assistant.yaml
-      - packages/core/media-player.yaml
-      - packages/core/timers-alarm.yaml
+#      - packages/core/media-player.yaml
+#      - packages/core/timers-alarm.yaml
 #      - packages/core/controls.yaml
 #      - packages/respeaker-lite/hardware.yaml
 
