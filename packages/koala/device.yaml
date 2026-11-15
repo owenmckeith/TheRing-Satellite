@@ -113,9 +113,9 @@ light:
           lambda: |-
             auto light_color = id(led_ring).current_values;
             Color color(light_color.get_red() * 255, light_color.get_green() * 255, light_color.get_blue() * 255);
-            int step = 255/60;
             for (uint8_t i = 0; i < 60; i++) {
-              uint8_t = color * (((60 - id(global_led_animation_index) + i) % 60) * step);
+              uint8_t scale = (((60 - id(global_led_animation_index) + i) % 60) * 255) / 60;
+              it[i] = color * scale;
             }
             id(global_led_animation_index) = (id(global_led_animation_index) + 1) % 60;
       - addressable_lambda:
@@ -124,9 +124,9 @@ light:
           lambda: |-
             auto light_color = id(led_ring).current_values;
             Color color(light_color.get_red() * 255, light_color.get_green() * 255, light_color.get_blue() * 255);
-            int step = 255/60;
             for (uint8_t i = 0; i < 60; i++) {
-              uint8_t = color * (((60 - id(global_led_animation_index) + i) % 60) * step);
+              uint8_t scale = (((60 - id(global_led_animation_index) + i) % 60) * 255) / 60;
+              it[i] = color * scale;
             }
             id(global_led_animation_index) = (id(global_led_animation_index) + 1) % 60;
       - addressable_lambda:
@@ -143,7 +143,7 @@ light:
             auto light_color = id(led_ring).current_values;
             Color color(light_color.get_red() * 255, light_color.get_green() * 255, light_color.get_blue() * 255);
             for (uint8_t i = 0; i < 60; i++) {
-                uint8_t = color * uint8_t(255/brightness_step_number*(brightness_step_number-brightness_step));
+              it[i] = color * uint8_t(255 / brightness_step_number * (brightness_step_number - brightness_step));
             }
             if (brightness_decreasing) {
               brightness_step++;
@@ -160,10 +160,11 @@ light:
             id(global_led_animation_index) = (60 + id(global_led_animation_index) - 1) % 60;
             auto light_color = id(led_ring).current_values;
             Color color(light_color.get_red() * 255, light_color.get_green() * 255, light_color.get_blue() * 255);
-            int step = 255/60;
             for (uint8_t i = 0; i < 60; i++) {
-              it[i] = color * (255 - (((60 - id(global_led_animation_index) + i) % 60) * step));
+              uint8_t scale = 255 - ((((60 - id(global_led_animation_index) + i) % 60) * 255) / 60);
+              it[i] = color * scale;
             }
+
       - addressable_lambda:
           name: "Respeaker startup failed"
           lambda: |-
