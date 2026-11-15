@@ -37,7 +37,7 @@ esp32:
 ota:
   - platform: esphome
     id: ota_esphome
-    password: !ota_password_ring
+    password: !secret ota_password_ring
 
 globals:
   # Global index for our LEDs. So that switching between different animation does not lead to unwanted effects.
