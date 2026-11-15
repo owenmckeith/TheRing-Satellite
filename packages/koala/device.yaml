@@ -98,12 +98,12 @@ light:
     internal: true
     default_transition_length: 0ms
     segments:
+#      - id: leds_internal
+#        from: 0
+#        to: 1  # was 31
+#        reversed: True
       - id: leds_internal
-        from: 0
-        to: 1  # was 31
-        reversed: True
-      - id: leds_internal
-        from: 2 #was 32
+        from: 0 #was 32
         to: 59 #was 42
         reversed: True
     effects:
@@ -115,7 +115,7 @@ light:
             Color color(light_color.get_red() * 255, light_color.get_green() * 255, light_color.get_blue() * 255);
             int step = 255/60;
             for (uint8_t i = 0; i < 60; i++) {
-              it[i] = color * (((60 - id(global_led_animation_index) + i) % 60) * step);
+              uint8_t = color * (((60 - id(global_led_animation_index) + i) % 60) * step);
             }
             id(global_led_animation_index) = (id(global_led_animation_index) + 1) % 60;
       - addressable_lambda:
@@ -126,7 +126,7 @@ light:
             Color color(light_color.get_red() * 255, light_color.get_green() * 255, light_color.get_blue() * 255);
             int step = 255/60;
             for (uint8_t i = 0; i < 60; i++) {
-              it[i] = color * (((60 - id(global_led_animation_index) + i) % 60) * step);
+              uint8_t = color * (((60 - id(global_led_animation_index) + i) % 60) * step);
             }
             id(global_led_animation_index) = (id(global_led_animation_index) + 1) % 60;
       - addressable_lambda:
@@ -143,7 +143,7 @@ light:
             auto light_color = id(led_ring).current_values;
             Color color(light_color.get_red() * 255, light_color.get_green() * 255, light_color.get_blue() * 255);
             for (uint8_t i = 0; i < 60; i++) {
-                it[i] = color * uint8_t(255/brightness_step_number*(brightness_step_number-brightness_step));
+                uint8_t = color * uint8_t(255/brightness_step_number*(brightness_step_number-brightness_step));
             }
             if (brightness_decreasing) {
               brightness_step++;
@@ -181,7 +181,7 @@ light:
           lambda: |-
             Color color(255, 0, 255);
             Color silenced_color(255, 0, 0);
-            auto volume_ratio = id(external_media_player).volume * 10.0f;
+            auto volume_ratio = id(external_media_player).volume * 60.0f;
             auto is_muted = id(external_media_player).is_muted() || id(external_media_player).volume == 0.0f;
             for (uint8_t i = 0; i < 60; i++) {
               if (i <= volume_ratio && !is_muted) {
@@ -276,7 +276,7 @@ light:
             auto timer_ratio = 60.0f * id(first_active_timer).seconds_left / max(id(first_active_timer).total_seconds , static_cast<uint32_t>(1));
             uint8_t last_led_on = static_cast<uint8_t>(ceil(timer_ratio)) - 1;
             for (uint8_t i = 0; i < 60; i++) {
-              float brightness_dip = ( i == id(global_led_animation_index) % 43 && i != last_led_on ) ? 0.96f : 1.0f ;
+              float brightness_dip = ( i == id(global_led_animation_index) % 60 && i != last_led_on ) ? 0.96f : 1.0f ;
               if (i <= timer_ratio) {
                 it[i] = color * min(255.0f * brightness_dip * (timer_ratio - i) , 255.0f * brightness_dip) ;
               } else {
@@ -300,7 +300,7 @@ light:
                 it[i] = Color::BLACK;
               }
             }
-            index = (index + 1) % 43;
+            index = (index + 1) % 60;
   # User facing LED ring. Remapping of the internal LEDs.
   # Exposed to be used by the user.
   - platform: partition
@@ -317,12 +317,12 @@ light:
       green: 73.3%
       blue: 94.9%
     segments:
+#      - id: leds_internal
+#        from: 0
+#        to: 31 #31
+#        reversed: True
       - id: leds_internal
-        from: 0
-        to: 31 #31
-        reversed: True
-      - id: leds_internal
-        from: 32 #32
+        from: 0 #32
         to: 59 #42
         reversed: True
     effects:
@@ -339,9 +339,7 @@ light:
       - addressable_fireworks: 
       - addressable_scan:
           scan_width: 4
-          move_interval: 50ms
-      - addressable_strobe:
-      
+          move_interval: 50ms     
           
   - platform: esp32_rmt_led_strip
     id: led_respeaker_onboard
