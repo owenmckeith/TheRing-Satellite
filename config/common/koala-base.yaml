@@ -27,5 +27,5 @@ packages:
       - packages/core/media-player.yaml
       - packages/core/timers-alarm.yaml
       - packages/core/controls.yaml
-      - packages/respeaker-lite/hardware.yaml
+#      - packages/respeaker-lite/hardware.yaml
 
