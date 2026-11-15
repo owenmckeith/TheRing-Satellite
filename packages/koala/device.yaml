@@ -340,6 +340,8 @@ light:
       - addressable_scan:
           scan_width: 4
           move_interval: 50ms
+      - addressable_strobe:
+      
           
   - platform: esp32_rmt_led_strip
     id: led_respeaker_onboard
